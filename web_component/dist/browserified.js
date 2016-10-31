@@ -6,8 +6,18 @@ module.exports = {
 };
 
 },{}],3:[function(require,module,exports){
-arguments[4][2][0].apply(exports,arguments)
-},{"dup":2}],4:[function(require,module,exports){
+module.exports = {
+  push : [
+    {
+      title : 'Item',
+      anyOf : [{type : 'array'}, {type : 'object'}, {type : 'string'}, {type : 'number'}, {type : 'boolean'}]
+    }
+  ],
+  pop : true,
+  shift : true
+};
+
+},{}],4:[function(require,module,exports){
 function sinkMapCreator(execlib, ParentSinkMap) {
   'use strict';
   var sinkmap = new (execlib.lib.Map);

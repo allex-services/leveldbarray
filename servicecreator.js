@@ -20,7 +20,7 @@ function createLevelDBArrayService(execlib, ParentService, leveldblib) {
   }
   
   ParentService.inherit(LevelDBArrayService, factoryCreator);
-  lib.inheritMethods (LevelDBArrayService, DBArrayHandler, 'setDB', 'onInitDone', 'onInitTraversal', 'doMany',  'push', 'manyPutterStartFromOne', 'manyPutter', 'pushMany', 'shift', 'manyShifterStartFromOne', 'manyShifter', 'shiftMany', 'doShiftMany', 'pop', 'manyPopperStartFromOne', 'manyPopper', 'popMany', 'finishAndContinueWith', 'processQ', 'dbPerform');
+  lib.inheritMethods (LevelDBArrayService, DBArrayHandler, 'onInitDone', 'onInitTraversal', 'doMany',  'push', 'manyPutterStartFromOne', 'manyPutter', 'pushMany', 'shift', 'manyShifterStartFromOne', 'manyShifter', 'shiftMany', 'doShiftMany', 'pop', 'manyPopperStartFromOne', 'manyPopper', 'popMany', 'finishAndContinueWith', 'processQ', 'dbPerform', 'setDB', 'createDB', 'getReadStream', 'readInto', 'streamInto', 'traverse', 'onLevelDBCreated', 'busy', 'whenFree', 'checkQ', 'begin', 'finish');
   
   LevelDBArrayService.prototype.__cleanUp = function() {
     DBArrayHandler.prototype.destroy.call(this);

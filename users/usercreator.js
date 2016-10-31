@@ -13,6 +13,18 @@ function createUser(execlib, ParentUser) {
     ParentUser.prototype.__cleanUp.call(this);
   };
 
+  User.prototype.push = function (item, defer) {
+    this.__service.push (item, defer);
+  };
+
+  User.prototype.pop = function (defer) {
+    this.__service.pop (defer);
+  };
+
+  User.prototype.shift = function (defer) {
+    this.__service.shift(defer);
+  };
+
   return User;
 }
 
