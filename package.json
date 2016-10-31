@@ -1,0 +1,21 @@
+{
+  "name": "allex_leveldbarrayservice",
+  "version": "0.1.0",
+  "description": "LevelDBArrayService",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url" : "git@gitlab.hers.rs:allex_services/leveldbarray"
+  },
+  "keywords": [
+    "ecosystem:allex",
+    "Service",
+    "LevelDBArray"
+  ],
+  "author": "HERS Belgrade",
+  "license": "ISC"
+}
+
