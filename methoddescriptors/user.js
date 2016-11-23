@@ -6,5 +6,11 @@ module.exports = {
     }
   ],
   pop : true,
-  shift : true
+  shift : true,
+  traverse : [
+    {
+      title : 'Options',
+      type : 'object'
+    }
+  ]
 };

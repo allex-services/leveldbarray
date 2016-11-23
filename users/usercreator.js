@@ -1,4 +1,4 @@
-function createUser(execlib, ParentUser) {
+function createUser(execlib, ParentUser, leveldblib) {
   'use strict';
   if (!ParentUser) {
     ParentUser = execlib.execSuite.ServicePack.Service.prototype.userFactory.get('user');
@@ -6,10 +6,14 @@ function createUser(execlib, ParentUser) {
 
   function User(prophash) {
     ParentUser.call(this, prophash);
+    leveldblib.ServiceUserMixin.call(this);
   }
   
   ParentUser.inherit(User, require('../methoddescriptors/user'), [/*visible state fields here*/]/*or a ctor for StateStream filter*/);
+  leveldblib.ServiceUserMixin.addMethods(User);
+
   User.prototype.__cleanUp = function () {
+    leveldblib.ServiceUserMixin.prototype.__cleanUp.call(this);
     ParentUser.prototype.__cleanUp.call(this);
   };
 
@@ -23,6 +27,10 @@ function createUser(execlib, ParentUser) {
 
   User.prototype.shift = function (defer) {
     this.__service.shift(defer);
+  };
+
+  User.prototype.traverse = function (options, defer) {
+    this.streamLevelDB (this.__service, options, defer);
   };
 
   return User;
