@@ -14,15 +14,21 @@ module.exports = {
     }
   ],
   pop : true,
-  shift : true
+  shift : true,
+  traverse : [
+    {
+      title : 'Options',
+      type : 'object'
+    }
+  ]
 };
 
 },{}],4:[function(require,module,exports){
-function sinkMapCreator(execlib, ParentSinkMap) {
+function sinkMapCreator(execlib, ParentSinkMap, leveldblib) {
   'use strict';
   var sinkmap = new (execlib.lib.Map);
   sinkmap.add('service', require('./sinks/servicesinkcreator')(execlib, ParentSinkMap.get('service')));
-  sinkmap.add('user', require('./sinks/usersinkcreator')(execlib, ParentSinkMap.get('user')));
+  sinkmap.add('user', require('./sinks/usersinkcreator')(execlib, ParentSinkMap.get('user'), leveldblib));
   
   return sinkmap;
 }
@@ -46,13 +52,14 @@ function createServiceSink(execlib, ParentSink) {
 module.exports = createServiceSink;
 
 },{"../methoddescriptors/serviceuser":2}],6:[function(require,module,exports){
-function createUserSink(execlib, ParentSink) {
+function createUserSink(execlib, ParentSink, leveldblib) {
   'use strict';
   function UserSink(prophash, client) {
     ParentSink.call(this, prophash, client);
   }
   
   ParentSink.inherit(UserSink, require('../methoddescriptors/user'));
+  leveldblib.enhanceSink(UserSink);
   UserSink.prototype.__cleanUp = function () {
     ParentSink.prototype.__cleanUp.call(this);
   };
